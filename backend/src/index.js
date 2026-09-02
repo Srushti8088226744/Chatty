@@ -73,9 +73,12 @@ server.listen(PORT, () => {
   connectDB();
 }).on("error", (err) => {
   if (err.code === "EADDRINUSE") {
-    console.error(`Port ${PORT} is already in use. Please use a different port.`);
+    console.log(`\n======================================================`);
+    console.log(`Backend server is ALREADY running on http://localhost:${PORT}`);
+    console.log(`======================================================\n`);
+    process.exit(0);
   } else {
     console.error("Server error:", err);
+    process.exit(1);
   }
-  process.exit(1);
 });
